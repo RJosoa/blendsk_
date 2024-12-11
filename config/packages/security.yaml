@@ -53,13 +53,14 @@ security:
       jwt: ~
 
   access_control:
-    - { path: ^/login, roles: PUBLIC_ACCESS }
-    - { path: ^/logout, roles: PUBLIC_ACCESS }
+    # - { path: ^/login, roles: PUBLIC_ACCESS }
+    - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, roles: PUBLIC_ACCESS }
     - { path: ^/explorer, roles: PUBLIC_ACCESS }
     - { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/api/login, roles: ROLE_ADMIN }
-    - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+    - { path: ^/, roles: ROLE_USER }
     # - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     # - { path: ^/api/users, roles: ROLE_USER }
 

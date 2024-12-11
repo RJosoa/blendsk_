@@ -1,5 +1,91 @@
 controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+  resource:
+    path: ../src/Controller/
+    namespace: App\Controller
+  type: attribute
+
+home:
+  path: /
+  controller: App\Controller\HomeController::index
+
+explorer:
+  path: /explorer
+  controller: App\Controller\PostController::index
+
+category_list:
+  path: /category
+  controller: App\Controller\CategoryController::list
+
+category_create:
+  path: admin/category/create
+  controller: App\Controller\CategoryController::create
+  methods: ["GET", "POST"]
+
+category_edit:
+  path: admin/category/{id}/edit
+  controller: App\Controller\CategoryController::edit
+  methods: ["GET", "POST"]
+
+category_delete:
+  path: admin/category/{id}
+  controller: App\Controller\CategoryController::delete
+  methods: POST
+
+
+post_create:
+  path: admin/post/create
+  controller: App\Controller\PostController::create
+  methods: ["GET", "POST"]
+
+post_show:
+  path: /posts/{id}
+  controller: App\Controller\PostController::show
+
+post_edit:
+  path: admin/post/{id}/edit
+  controller: App\Controller\PostController::edit
+  methods: ["GET", "POST"]
+
+post_delete:
+  path: admin/post/{id}
+  controller: App\Controller\PostController::delete
+  methods: POST
+
+api_login:
+  path: /api/login
+  controller: App\Controller\AuthController::login
+
+
+login:
+  path: /login
+  controller: App\Controller\AuthController::login
+
+admin_users_list:
+  path: /users
+  controller: App\Controller\AdminController::list
+  methods: [GET]
+
+admin_user_update_roles:
+  path: api/admin/users/{id}
+  controller: App\Controller\AdmiinController::updateRoles
+  methods: PUT
+
+user_details:
+  path: users/{id}
+  controller: App\Controller\UserController::show
+  methods: GET
+
+register:
+  path: /register
+  controller: App\Controller\UserController::create
+  methods: [GET, POST]
+
+user_edit:
+  path: users/{id}/edit
+  controller: App\Controller\UserController::edit
+  methods: [GET, PUT]
+
+user_delete:
+  path: api/users/{id}
+  controller: App\Controller\UserController::delete
+  methods: DELETE
