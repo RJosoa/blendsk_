@@ -1,0 +1,39 @@
+<section>
+    {% for post in posts %}
+    <div class="post">
+      <h2>
+        <a href="{{ path('post_show', { id: post.id }) }}">{{ post.title }}</a>
+      </h2>
+      <div>
+        <img
+          src="{{ post.featureImage }}"
+          alt="Image de {{ post.title }}"
+          style="max-width: 200px"
+        />
+      </div>
+      <p>{{ post.description }}</p>
+      {% if post.category %}
+        <p>Catégorie : {{ post.category.name }}</p>
+      {% else %}
+        <p>Aucune catégorie</p>
+      {% endif %}
+      <a href="{{ path('post_show', { id: post.id }) }}">Lire plus</a>
+
+      {% if is_granted('ROLE_ADMIN') %}
+      <a href="{{ path('post_edit', { id: post.id }) }}">
+        <button type="button">Modifier</button>
+      </a>
+
+      <form
+        action="{{ path('post_delete', { id: post.id }) }}"
+        method="post"
+        onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce post ?');"
+      >
+        <button type="submit">Supprimer</button>
+      </form>
+      {% endif %}
+    </div>
+    {% else %}
+    <p>Aucun post disponible.</p>
+    {% endfor %}
+  </section>

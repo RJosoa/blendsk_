@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<h1>Bienvenue sur notre blog</h1>
+
+{% if is_granted('ROLE_ADMIN') %}
+<section>
+    <a href="{{ path('post_create') }}">
+        <button type="button">Créer un nouveau post</button>
+    </a>
+    <a href="{{ path('category_create') }}">
+        <button type="button">Créer une nouvelle catégorie</button>
+    </a>
+</section>
+{% endif %}
+
+<section>
+  <h2>Liste des posts</h2>
+  {% include 'post/list.html.twig' with {'posts': posts} %}
+</section>
+
+{% endblock %}
