@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un nouveau post{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau post</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <form method="post" action="{{ path('post_create') }}">
+        <div class="form-group">
+            <label for="featureImage">Image d'illustration (URL)</label>
+            <input type="text" id="featureImage" name="featureImage" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Titre</label>
+            <input type="text" id="title" name="title" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Contenu</label>
+            <textarea id="content" name="content" class="form-control" rows="6" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Catégorie</label>
+            <select id="category" name="category" class="form-control">
+                <option value="">Sélectionner une catégorie</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Créer</button>
+        <a href="{{ path('explorer') }}" class="btn btn-secondary">Annuler</a>
+    </form>
+{% endblock %}
